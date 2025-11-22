@@ -1,9 +1,7 @@
 server:
-  port: 9090
+  port: 8080
 
 spring:
-  application:
-    name: api-gateway
   cloud:
     gateway:
       routes:
@@ -15,12 +13,3 @@ spring:
           uri: lb://TASK-SERVICE
           predicates:
             - Path=/api/tasks/**
-    config:
-      uri: http://localhost:8888
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
-    register-with-eureka: true
-    fetch-registry: true
