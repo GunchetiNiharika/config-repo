@@ -1,0 +1,16 @@
+server:
+  port: 9090
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/api/users/**
+
+        - id: task-service
+          uri: lb://TASK-SERVICE
+          predicates:
+            - Path=/api/tasks/**

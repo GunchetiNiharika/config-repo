@@ -1,0 +1,40 @@
+server:
+  port: 8081
+
+spring:
+  datasource:
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+
+jwt:
+  secret: ${JWT_SECRET}
+  expiration: 3600000
+
+logging:
+  level:
+    org.springframework: INFO
+    com.example: DEBUG
+    org.springframework.security: DEBUG
+    io.github.resilience4j.circuitbreaker: DEBUG
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      taskService:
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10s
