@@ -13,3 +13,9 @@ spring:
           uri: lb://TASK-SERVICE
           predicates:
             - Path=/api/tasks/**
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    org.springframework.cloud.gateway.route.RoutePredicateHandlerMapping: DEBUG
+    org.springframework.cloud.gateway.filter.GlobalFilter: DEBUG
+    reactor.netty.http.server: DEBUG
