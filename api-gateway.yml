@@ -4,17 +4,16 @@ server:
 spring:
   cloud:
     gateway:
-      server:
-        webflux:
-          routes:
-            - id: user-service
-              uri: lb://USER-SERVICE
-              predicates:
-                - Path=/api/users/**
-            - id: task-service
-              uri: lb://TASK-SERVICE
-              predicates:
-                - Path=/api/tasks/**
+      routes:
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/api/users/**
+        - id: task-service
+          uri: lb://TASK-SERVICE
+          predicates:
+            - Path=/api/tasks/**
+
 logging:
   level:
     org.springframework.cloud.gateway: DEBUG
